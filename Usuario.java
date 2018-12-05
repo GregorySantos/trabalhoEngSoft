@@ -36,5 +36,7 @@ public class Usuario{
         this.tipoEmprestimo = tipoEmprestimo;
     }
     
-
+    public void emprestar(Livro livro){
+        this.tipoEmprestimo.fazerEmprestimo(livro);
+    }
 }
