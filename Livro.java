@@ -5,7 +5,26 @@ public class Livro{
     private String editora;
     private String autores;
     private Int edicao;
-    private Int anoDaPublicacao;
+	private Int anoDaPublicacao;
+	private Usuario dono;
+	private Int devolucao;
+	private Int reserva;
+
+	public Usuario getDono() {
+		return this.dono;
+	}
+
+	public void setDono(Usuario dono) {
+		this.dono = dono;
+	}
+
+	public Int getDevolucao() {
+		return this.devolucao;
+	}
+
+	public void setDevolucao(Int devolucao) {
+		this.devolucao = devolucao;
+	}
 
     public String getTitulo()
     {
