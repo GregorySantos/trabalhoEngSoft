@@ -1,14 +1,14 @@
 public class Livro{
 
     private String titulo;
-    private Int codigo;
+    private int codigo;
     private String editora;
     private String autores;
-    private Int edicao;
-	private Int anoDaPublicacao;
+    private int edicao;
+	private int anoDaPublicacao;
 	private Usuario dono;
-	private Int devolucao;
-	private Int reserva;
+	private int devolucao;
+	private int reserva;
 
 	public Usuario getDono() {
 		return this.dono;
@@ -18,11 +18,11 @@ public class Livro{
 		this.dono = dono;
 	}
 
-	public Int getDevolucao() {
+	public int getDevolucao() {
 		return this.devolucao;
 	}
 
-	public void setDevolucao(Int devolucao) {
+	public void setDevolucao(int devolucao) {
 		this.devolucao = devolucao;
 	}
 
@@ -36,12 +36,12 @@ public class Livro{
         this.titulo = titulo;
     }
 
-	public Int getCodigo()
+	public int getCodigo()
 	{
 		return this.codigo;
 	}
 
-	public void setCodigo(Int codigo)
+	public void setCodigo(int codigo)
 	{
 		this.codigo = codigo;
 	}
@@ -66,22 +66,22 @@ public class Livro{
 		this.autores = autores;
 	}
 
-    public Int getEdicao()
+    public int getEdicao()
 	{
 		return this.edicao;
 	}
 
-	public void setEdicao(Int edicao)
+	public void setEdicao(int edicao)
 	{
 		this.edicao = edicao;
     }
     
-	public Int getAnodapublicacao()
+	public int getAnodapublicacao()
 	{
 		return this.anoDaPublicacao;
 	}
 
-	public void setAnodapublicacao(Int anoDaPublicacao)
+	public void setAnodapublicacao(int anoDaPublicacao)
 	{
 		this.anoDaPublicacao = anoDaPublicacao;
 	}

@@ -1,6 +1,6 @@
-public class EmprestimoPos implements EmprestimoBehavior{
+public class EmprestimoGraduacao implements EmprestimoBehavior{
 
-    public Null fazerEmprestimo(Livro livro){
+    public void fazerEmprestimo(Livro livro){
         
     }
 

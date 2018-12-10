@@ -4,7 +4,7 @@ public class Biblioteca{
     private Livro exemplares[];
     private Usuario usuarios[];
 
-    public Void EfetuarEmprestimo(Int idLivro, Int idUsuario){
+    public void EfetuarEmprestimo(int idLivro, int idUsuario){
         this.usuarios[idUsuario].emprestar(exemplares[idLivro]);
     } 
 }

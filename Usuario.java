@@ -1,12 +1,12 @@
 public class Usuario{
 
     private String nome;
-    private Int codigo;
+    private int codigo;
     private EmprestimoBehavior tipoEmprestimo;
 
     
 
-    public Usuario(String nome, Int codigo, EmprestimoBehavior tipoEmprestimo) {
+    public Usuario(String nome, int codigo, EmprestimoBehavior tipoEmprestimo) {
         this.nome = nome;
         this.codigo = codigo;
         this.tipoEmprestimo = tipoEmprestimo;
@@ -20,11 +20,11 @@ public class Usuario{
         this.nome = nome;
     }
 
-    public Int getCodigo() {
+    public int getCodigo() {
         return this.codigo;
     }
 
-    public void setCodigo(Int codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
