@@ -9,8 +9,7 @@ public class Livro{
     private int edicao;
 	private int anoDaPublicacao;
 	private Usuario dono;
-	private int devolucao;
-	private int reserva;
+	private int reservasAtivas;
 	private ArrayList<Exemplar> exemplares;
 	
 	public Livro(String titulo, int codigo, String editora, String autores, int edicao, int anoPubli) {
@@ -42,6 +41,18 @@ public class Livro{
 		}
 		return null;
 	}
+	
+	public int getNumExemplaresDisponiveis() {
+		Exemplar exemplar;
+		int disponiveis = 0;
+		for(int i=0; i<exemplares.size(); i++) {
+			exemplar = exemplares.get(i);
+			if(exemplar.getStatus() == "disponivel") {
+				disponiveis++;
+			}
+		}
+		return disponiveis;
+	}
 
 	public Usuario getDono() {
 		return this.dono;
@@ -51,15 +62,19 @@ public class Livro{
 		this.dono = dono;
 	}
 
-	public int getDevolucao() {
-		return this.devolucao;
+    public int getReservasAtivas() {
+		return reservasAtivas;
 	}
 
-	public void setDevolucao(int devolucao) {
-		this.devolucao = devolucao;
+	public void setReservasAtivas() {
+		this.reservasAtivas++;
+	}
+	
+	public void unsetReservasAtivas() {
+		this.reservasAtivas--;
 	}
 
-    public String getTitulo()
+	public String getTitulo()
     {
         return this.titulo;
     }

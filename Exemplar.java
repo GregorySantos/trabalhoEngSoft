@@ -3,6 +3,7 @@ public class Exemplar {
 	private Livro livro;
 	private int codigoExemplar;
 	private String status;
+
 	
 	public Exemplar(Livro livro, int codigoExemplar, String status) {
 		this.livro = livro;

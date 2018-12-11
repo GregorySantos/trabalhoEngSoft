@@ -1,6 +1,6 @@
 public class EmprestimoProfessor implements EmprestimoBehavior{
 
-    public void fazerEmprestimo(Livro livro){
+    public void fazerEmprestimo(Livro livro, Usuario usuario){
         
     }
 

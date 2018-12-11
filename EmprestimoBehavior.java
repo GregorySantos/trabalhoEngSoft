@@ -1,3 +1,3 @@
 public interface EmprestimoBehavior{
-   public void fazerEmprestimo(Livro livro);
+   public void fazerEmprestimo(Livro livro, Usuario usuario);
 }
