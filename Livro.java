@@ -27,6 +27,21 @@ public class Livro{
 		Exemplar exemplar = new Exemplar(this, codigoExemplar, status);
 		exemplares.add(exemplar);
 	}
+	
+	public Exemplar getExemplar(int codigoExemplar) {
+		return exemplares.get(codigoExemplar);
+	}
+	
+	public Exemplar getExemplarDisponivel() {
+		Exemplar exemplar;
+		for(int i=0; i<exemplares.size(); i++) {
+			exemplar = exemplares.get(i);
+			if(exemplar.getStatus() == "disponivel") {
+				return exemplar;
+			}
+		}
+		return null;
+	}
 
 	public Usuario getDono() {
 		return this.dono;
