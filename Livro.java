@@ -1,14 +1,58 @@
+import java.util.ArrayList;
+
 public class Livro{
 
     private String titulo;
-    private Int codigo;
+    private int codigo;
     private String editora;
     private String autores;
-    private Int edicao;
-	private Int anoDaPublicacao;
+    private int edicao;
+	private int anoDaPublicacao;
 	private Usuario dono;
-	private Int devolucao;
-	private Int reserva;
+	private int reservasAtivas;
+	private ArrayList<Exemplar> exemplares;
+	
+	public Livro(String titulo, int codigo, String editora, String autores, int edicao, int anoPubli) {
+		this.titulo = titulo;
+		this.codigo = codigo;
+		this.editora = editora;
+		this.autores = autores;
+		this.edicao = edicao;
+		this.anoDaPublicacao = anoPubli;
+		exemplares = new ArrayList<Exemplar>();
+	}
+	
+	public void addExemplar(int codigoExemplar, String status) {
+		Exemplar exemplar = new Exemplar(this, codigoExemplar, status);
+		exemplares.add(exemplar);
+	}
+	
+	public Exemplar getExemplar(int codigoExemplar) {
+		return exemplares.get(codigoExemplar);
+	}
+	
+	public Exemplar getExemplarDisponivel() {
+		Exemplar exemplar;
+		for(int i=0; i<exemplares.size(); i++) {
+			exemplar = exemplares.get(i);
+			if(exemplar.getStatus() == "disponivel") {
+				return exemplar;
+			}
+		}
+		return null;
+	}
+	
+	public int getNumExemplaresDisponiveis() {
+		Exemplar exemplar;
+		int disponiveis = 0;
+		for(int i=0; i<exemplares.size(); i++) {
+			exemplar = exemplares.get(i);
+			if(exemplar.getStatus() == "disponivel") {
+				disponiveis++;
+			}
+		}
+		return disponiveis;
+	}
 
 	public Usuario getDono() {
 		return this.dono;
@@ -18,15 +62,19 @@ public class Livro{
 		this.dono = dono;
 	}
 
-	public Int getDevolucao() {
-		return this.devolucao;
+    public int getReservasAtivas() {
+		return reservasAtivas;
 	}
 
-	public void setDevolucao(Int devolucao) {
-		this.devolucao = devolucao;
+	public void setReservasAtivas() {
+		this.reservasAtivas++;
+	}
+	
+	public void unsetReservasAtivas() {
+		this.reservasAtivas--;
 	}
 
-    public String getTitulo()
+	public String getTitulo()
     {
         return this.titulo;
     }
@@ -36,12 +84,12 @@ public class Livro{
         this.titulo = titulo;
     }
 
-	public Int getCodigo()
+	public int getCodigo()
 	{
 		return this.codigo;
 	}
 
-	public void setCodigo(Int codigo)
+	public void setCodigo(int codigo)
 	{
 		this.codigo = codigo;
 	}
@@ -66,22 +114,22 @@ public class Livro{
 		this.autores = autores;
 	}
 
-    public Int getEdicao()
+    public int getEdicao()
 	{
 		return this.edicao;
 	}
 
-	public void setEdicao(Int edicao)
+	public void setEdicao(int edicao)
 	{
 		this.edicao = edicao;
     }
     
-	public Int getAnodapublicacao()
+	public int getAnodapublicacao()
 	{
 		return this.anoDaPublicacao;
 	}
 
-	public void setAnodapublicacao(Int anoDaPublicacao)
+	public void setAnodapublicacao(int anoDaPublicacao)
 	{
 		this.anoDaPublicacao = anoDaPublicacao;
 	}
