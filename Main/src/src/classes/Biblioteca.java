@@ -129,7 +129,7 @@ public class Biblioteca {
 	private void criaObserver(int usu, int liv) {
 		Usuario user = this.getUserById(usu);
 		Livro livro = this.getLivroById(liv);
-		user.observa(livro);
+		livro.addObserver(user);
 	}
 
 	private void efetuarDevolucao(int usu, int liv) {
