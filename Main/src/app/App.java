@@ -1,8 +1,6 @@
-package app;
+package src.app;
 
-import java.util.Scanner;
-
-import classes.Biblioteca;
+import src.classes.Biblioteca;
 
 public class App {
     public static void main(String[] args) throws Exception {

@@ -1,4 +1,4 @@
-package classes;
+package src.classes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -49,12 +49,6 @@ public class Biblioteca {
 			}
 		}
 		return null;
-	}
-
-	public void efetuarEmprestimo(int codigoUsuario, int codigoLivro) {
-		Usuario user = this.getUserById(codigoUsuario);
-		Livro livro = this.getLivroById(codigoLivro);
-		user.emprestar(livro);
 	}
 
 	public boolean getCommand() {
@@ -111,6 +105,12 @@ public class Biblioteca {
 
 	}
 
+	public void efetuarEmprestimo(int codigoUsuario, int codigoLivro) {
+		Usuario user = this.getUserById(codigoUsuario);
+		Livro livro = this.getLivroById(codigoLivro);
+		user.emprestar(livro);
+	}
+
 	private void consultaLivro(int liv) {
 		Livro livro = this.getLivroById(liv);
 		livro.consulta();
@@ -129,7 +129,7 @@ public class Biblioteca {
 	private void criaObserver(int usu, int liv) {
 		Usuario user = this.getUserById(usu);
 		Livro livro = this.getLivroById(liv);
-		user.observa(livro);
+		livro.addObserver(user);
 	}
 
 	private void efetuarDevolucao(int usu, int liv) {

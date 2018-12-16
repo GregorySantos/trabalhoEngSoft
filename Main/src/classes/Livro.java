@@ -1,6 +1,7 @@
+package src.classes;
 import java.util.ArrayList;
 
-public class Livro{
+public class Livro implements Subject{
 
     private String titulo;
     private int codigo;
@@ -11,6 +12,7 @@ public class Livro{
 	private Usuario dono;
 	private int reservasAtivas;
 	private ArrayList<Exemplar> exemplares;
+	private ArrayList<Observer> observers;
 	
 	public Livro(String titulo, int codigo, String editora, String autores, int edicao, int anoPubli) {
 		this.titulo = titulo;
@@ -20,6 +22,7 @@ public class Livro{
 		this.edicao = edicao;
 		this.anoDaPublicacao = anoPubli;
 		exemplares = new ArrayList<Exemplar>();
+		observers = new ArrayList<Observer>();
 	}
 	
 	public void addExemplar(int codigoExemplar, String status) {
@@ -68,6 +71,7 @@ public class Livro{
 
 	public void setReservasAtivas() {
 		this.reservasAtivas++;
+		if(this.reservasAtivas>=2)notifyObservers();
 	}
 	
 	public void unsetReservasAtivas() {
@@ -132,6 +136,28 @@ public class Livro{
 	public void setAnodapublicacao(int anoDaPublicacao)
 	{
 		this.anoDaPublicacao = anoDaPublicacao;
+	}
+
+	@Override
+	public void addObserver(Observer o) {
+		observers.add(o);
+		
+	}
+
+	@Override
+	public void removeObserver(Observer o) {
+		int i = observers.indexOf(o);
+		if (i >= 0) {
+			observers.remove(i);
+		}
+		
+	}
+
+	@Override
+	public void notifyObservers() {
+		for (Observer o : observers) {
+			o.update();
+		}
 	}
 
 }

@@ -1,3 +1,4 @@
+package src.classes;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -5,19 +6,19 @@ public class EmprestimoPos implements EmprestimoBehavior{
 
     public void fazerEmprestimo(Livro livro, Usuario usuario){
     	if(livro.getExemplarDisponivel() == null) {
-        	System.out.println("Empréstimo não realizado: Não há exemplar disponível deste livro.");
+        	System.out.println("Emprï¿½stimo nï¿½o realizado: Nï¿½o hï¿½ exemplar disponï¿½vel deste livro.");
         	return;
         }
         if(usuario.temDebito()) {
-        	System.out.println("Empréstimo não realizado: Usuário possui débito com a biblioteca.");
+        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio possui dï¿½bito com a biblioteca.");
         	return;
         }
         if(usuario.calcularEmprestimosAbertos() == 4) {
-        	System.out.println("Empréstimo não realizado: Usuário está no limite de empréstimos simultâneos.");
+        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio estï¿½ no limite de emprï¿½stimos simultï¿½neos.");
         	return;
         }
         if(usuario.temEmprestado(livro)) {
-        	System.out.println("Empréstimo não realizado: Usuário já possui um exemplar deste livro em empréstimo.");
+        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio jï¿½ possui um exemplar deste livro em emprï¿½stimo.");
         	return;
         }
         if((livro.getReservasAtivas() < livro.getNumExemplaresDisponiveis())
@@ -29,9 +30,9 @@ public class EmprestimoPos implements EmprestimoBehavior{
         	emp.setDataEmprestimo(dataEmprestimo);
         	emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
         	usuario.addEmprestimo(emp);	
-        	System.out.println("Empréstimo realizado com sucesso!");
+        	System.out.println("Emprï¿½stimo realizado com sucesso!");
         }else {
-        	System.out.println("Empréstimo não realizado: Todos os exemplares disponíveis estão reservados.");
+        	System.out.println("Emprï¿½stimo nï¿½o realizado: Todos os exemplares disponï¿½veis estï¿½o reservados.");
         	return;
         }  		 
     }

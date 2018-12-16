@@ -1,3 +1,4 @@
+package src.classes;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -5,11 +6,11 @@ public class EmprestimoProfessor implements EmprestimoBehavior{
 
     public void fazerEmprestimo(Livro livro, Usuario usuario){
     	if(livro.getExemplarDisponivel() == null) {
-        	System.out.println("Empréstimo não realizado: Não há exemplar disponível deste livro.");
+        	System.out.println("Emprï¿½stimo nï¿½o realizado: Nï¿½o hï¿½ exemplar disponï¿½vel deste livro.");
         	return;
         }
         if(usuario.temDebito()) {
-        	System.out.println("Empréstimo não realizado: Usuário possui débito com a biblioteca.");
+        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio possui dï¿½bito com a biblioteca.");
         	return;
         }        
         //faz emprestimo
@@ -19,7 +20,7 @@ public class EmprestimoProfessor implements EmprestimoBehavior{
         emp.setDataEmprestimo(dataEmprestimo);
         emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
         usuario.addEmprestimo(emp);	
-        System.out.println("Empréstimo realizado com sucesso!");		 
+        System.out.println("Emprï¿½stimo realizado com sucesso!");		 
     }
     
     public Date calcularDataDevolucao() {

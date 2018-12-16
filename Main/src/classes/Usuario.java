@@ -1,7 +1,9 @@
+package src.classes;
 import java.util.ArrayList;
 
-public class Usuario{
+public class Usuario implements Observer{
     private String nome;
+    private int notifies;
     private int codigo;
     private EmprestimoBehavior tipoEmprestimo;
     private ArrayList<Emprestimo> emprestimos;
@@ -11,6 +13,7 @@ public class Usuario{
         this.nome = nome;
         this.codigo = codigo;
         this.tipoEmprestimo = tipoEmprestimo;
+        this.setNotifies(0);
     }
 
     public String getNome() {
@@ -21,7 +24,15 @@ public class Usuario{
         this.nome = nome;
     }
 
-    public int getCodigo() {
+    public int getNotifies() {
+		return notifies;
+	}
+
+	public void setNotifies(int notifies) {
+		this.notifies = notifies;
+	}
+
+	public int getCodigo() {
         return this.codigo;
     }
 
@@ -94,4 +105,9 @@ public class Usuario{
     	return false;
     	
     }
+
+	@Override
+	public void update() {
+		this.setNotifies(this.getNotifies() + 1);
+	}
 }
