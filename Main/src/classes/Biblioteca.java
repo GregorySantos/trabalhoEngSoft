@@ -66,39 +66,46 @@ public class Biblioteca {
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.efetuarEmprestimo(usu, liv);
+			scanner.close();
 			return true;
 		case "dev":
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.efetuarDevolucao(usu, liv);
+			scanner.close();
 			return true;
 		case "res":
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.efetuarReserva(usu, liv);
+			scanner.close();
 			return true;
 
 		case "obs":
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.criaObserver(usu, liv);
+			scanner.close();
 			return true;
 
 		case "liv":
 			liv = scanner.nextInt();
 			this.consultaLivro(liv);
+			scanner.close();
 			return true;
 		case "usu":
 			usu = scanner.nextInt();
 			this.consultaUsuario(usu);
+			scanner.close();
 			return true;
 
 		case "ntf":
 			usu = scanner.nextInt();
 			this.getNotifies(usu);
+			scanner.close();
 			return true;
 		default:
-
+			scanner.close();
 			return false;
 		}
 
