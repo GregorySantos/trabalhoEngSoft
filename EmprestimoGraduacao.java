@@ -5,15 +5,19 @@ public class EmprestimoGraduacao implements EmprestimoBehavior{
 
     public void fazerEmprestimo(Livro livro, Usuario usuario){
         if(livro.getExemplarDisponivel() == null) {
+        	System.out.println("Empréstimo não realizado: Não há exemplar disponível deste livro.");
         	return;
         }
         if(usuario.temDebito()) {
+        	System.out.println("Empréstimo não realizado: Usuário possui débito com a biblioteca.");
         	return;
         }
         if(usuario.calcularEmprestimosAbertos() == 3) {
+        	System.out.println("Empréstimo não realizado: Usuário está no limite de empréstimos simultâneos.");
         	return;
         }
         if(usuario.temEmprestado(livro)) {
+        	System.out.println("Empréstimo não realizado: Usuário já possui um exemplar deste livro em empréstimo.");
         	return;
         }
         if((livro.getReservasAtivas() < livro.getNumExemplaresDisponiveis())
@@ -24,8 +28,10 @@ public class EmprestimoGraduacao implements EmprestimoBehavior{
         	Date dataEmprestimo = new Date();
         	emp.setDataEmprestimo(dataEmprestimo);
         	emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
-        	usuario.addEmprestimo(emp);		
+        	usuario.addEmprestimo(emp);	
+        	System.out.println("Empréstimo realizado com sucesso!");
         }else {
+        	System.out.println("Empréstimo não realizado: Todos os exemplares disponíveis estão reservados.");
         	return;
         }  		
     }
