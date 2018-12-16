@@ -29,7 +29,11 @@ public class EmprestimoPos implements EmprestimoBehavior{
         	Date dataEmprestimo = new Date();
         	emp.setDataEmprestimo(dataEmprestimo);
         	emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
-        	usuario.addEmprestimo(emp);	
+        	exemplar.setStatus("emprestado");
+        	usuario.addEmprestimo(emp);
+        	if(usuario.temReserva(livro)) {
+        		usuario.removerReserva(livro);
+        	}
         	System.out.println("Empréstimo do livro " + livro.getTitulo() + " para usuário(a) " + usuario.getNome() + " realizado com sucesso!");
         }else {
         	System.out.println("Empréstimo não realizado: Todos os exemplares disponíveis do livro " + livro.getTitulo() + " estão reservados.");

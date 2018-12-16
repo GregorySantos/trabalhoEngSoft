@@ -19,6 +19,7 @@ public class EmprestimoProfessor implements EmprestimoBehavior{
         Date dataEmprestimo = new Date();
         emp.setDataEmprestimo(dataEmprestimo);
         emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
+        exemplar.setStatus("emprestado");
         usuario.addEmprestimo(emp);	
         System.out.println("Empréstimo do livro " + livro.getTitulo() + " para usuário(a) " + usuario.getNome() + " realizado com sucesso!"); 
     }
