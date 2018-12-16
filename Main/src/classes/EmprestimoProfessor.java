@@ -6,11 +6,11 @@ public class EmprestimoProfessor implements EmprestimoBehavior{
 
     public void fazerEmprestimo(Livro livro, Usuario usuario){
     	if(livro.getExemplarDisponivel() == null) {
-        	System.out.println("Emprï¿½stimo nï¿½o realizado: Nï¿½o hï¿½ exemplar disponï¿½vel deste livro.");
+    		System.out.println("Empréstimo não realizado: Não há exemplar disponível do livro " + livro.getTitulo());
         	return;
         }
         if(usuario.temDebito()) {
-        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio possui dï¿½bito com a biblioteca.");
+        	System.out.println("Empréstimo não realizado: Usuário " + usuario.getNome() + " possui débito com a biblioteca.");
         	return;
         }        
         //faz emprestimo
@@ -20,7 +20,7 @@ public class EmprestimoProfessor implements EmprestimoBehavior{
         emp.setDataEmprestimo(dataEmprestimo);
         emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
         usuario.addEmprestimo(emp);	
-        System.out.println("Emprï¿½stimo realizado com sucesso!");		 
+        System.out.println("Empréstimo do livro " + livro.getTitulo() + " para usuário(a) " + usuario.getNome() + " realizado com sucesso!"); 
     }
     
     public Date calcularDataDevolucao() {

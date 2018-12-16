@@ -6,19 +6,19 @@ public class EmprestimoGraduacao implements EmprestimoBehavior{
 
     public void fazerEmprestimo(Livro livro, Usuario usuario){
         if(livro.getExemplarDisponivel() == null) {
-        	System.out.println("Emprï¿½stimo nï¿½o realizado: Nï¿½o hï¿½ exemplar disponï¿½vel deste livro.");
+        	System.out.println("Empréstimo não realizado: Não há exemplar disponível do livro " + livro.getTitulo());
         	return;
         }
         if(usuario.temDebito()) {
-        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio possui dï¿½bito com a biblioteca.");
+        	System.out.println("Empréstimo não realizado: Usuário " + usuario.getNome() + " possui débito com a biblioteca.");
         	return;
         }
         if(usuario.calcularEmprestimosAbertos() == 3) {
-        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio estï¿½ no limite de emprï¿½stimos simultï¿½neos.");
+        	System.out.println("Empréstimo não realizado: Usuário " + usuario.getNome() + " está no limite de empréstimos simultâneos.");
         	return;
         }
         if(usuario.temEmprestado(livro)) {
-        	System.out.println("Emprï¿½stimo nï¿½o realizado: Usuï¿½rio jï¿½ possui um exemplar deste livro em emprï¿½stimo.");
+        	System.out.println("Empréstimo não realizado: Usuário " + usuario.getNome() + " já possui um exemplar do livro " + livro.getTitulo() + " em empréstimo.");
         	return;
         }
         if((livro.getReservasAtivas() < livro.getNumExemplaresDisponiveis())
@@ -30,9 +30,9 @@ public class EmprestimoGraduacao implements EmprestimoBehavior{
         	emp.setDataEmprestimo(dataEmprestimo);
         	emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
         	usuario.addEmprestimo(emp);	
-        	System.out.println("Emprï¿½stimo realizado com sucesso!");
+        	System.out.println("Empréstimo do livro " + livro.getTitulo() + " para usuário(a) " + usuario.getNome() + " realizado com sucesso!");
         }else {
-        	System.out.println("Emprï¿½stimo nï¿½o realizado: Todos os exemplares disponï¿½veis estï¿½o reservados.");
+        	System.out.println("Empréstimo não realizado: Todos os exemplares disponíveis do livro " + livro.getTitulo() + " estão reservados.");
         	return;
         }  		
     }
