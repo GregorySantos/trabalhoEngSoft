@@ -1,4 +1,4 @@
-package classes;
+package Main.src.classes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
