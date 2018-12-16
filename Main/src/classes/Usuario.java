@@ -1,5 +1,6 @@
 package src.classes;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Usuario implements Observer{
     private String nome;
@@ -50,6 +51,50 @@ public class Usuario implements Observer{
     
     public void emprestar(Livro livro){
         this.tipoEmprestimo.fazerEmprestimo(livro, this);
+    }
+    
+    public void devolver(Livro livro) {
+    	Emprestimo emp;
+    	for(int i=0; i<emprestimos.size(); i++) {
+    		emp = emprestimos.get(i);
+    		if(emp.getExemplar().getCodigoLivro() == livro.getCodigo()) {
+    			Date dataDevolucao = new Date();
+    			emp.setDataDevolucaoReal(dataDevolucao);
+    			emp.getExemplar().setStatus("disponivel");
+    			System.out.println("Usuário: " + this.getNome());
+    			System.out.println("Livro " + livro.getTitulo() + " devolvido com sucesso!");
+    			return;
+    		}
+    	}
+    	System.out.println("Usuário: " + this.getNome() + " não possui o livro " + livro.getTitulo() + " emprestado");
+    }
+    
+    public void reservar(Livro livro) {
+    	int numReservas = this.reservas.size();
+    	if(numReservas == 3) {
+    		System.out.println("Reserva negada: Usuário " + this.getNome() + " já está no limite de reservas");
+    		return;
+    	}
+    	if(this.temReserva(livro)) {
+    		System.out.println("Reserva negada: Usuário " + this.getNome() + " já possui reserva do livro " + livro.getTitulo());
+    		return;
+    	}
+    	Reserva res = new Reserva(this, livro);
+    	Date dataReserva = new Date();
+    	res.setDataReserva(dataReserva);
+    	this.addReserva(res);
+    	System.out.println("Reserva do livro " + livro.getTitulo() + " para " + this.getNome() + " realizada com sucesso");
+    }
+    
+    public void removerReserva(Livro livro) {
+    	Reserva res;
+    	for(int i=0; i<reservas.size(); i++) {
+    		res = reservas.get(i);
+    		if(res.getLivro().getCodigo() == livro.getCodigo()) {
+    			reservas.remove(i);
+    			livro.unsetReservasAtivas();
+    		}
+    	}
     }
     
     public void addEmprestimo(Emprestimo emp) {
