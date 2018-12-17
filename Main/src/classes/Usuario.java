@@ -85,7 +85,6 @@ public class Usuario implements Observer{
     	Date dataReserva = new Date();
     	res.setDataReserva(dataReserva);
     	this.addReserva(res);
-    	livro.addReserva(this);
     	System.out.println("Reserva do livro " + livro.getTitulo() + " para " + this.getNome() + " realizada com sucesso");
     }
     
@@ -147,7 +146,7 @@ public class Usuario implements Observer{
     	Emprestimo emp;
     	for(int i=0; i<emprestimos.size(); i++) {
     		emp = emprestimos.get(i);
-    		if(emp.getExemplar().getCodigoLivro() == livro.getCodigo()) {
+    		if((emp.getExemplar().getCodigoLivro() == livro.getCodigo()) && (emp.getDataDevolucaoReal() == null) ) {
     			return true;
     		}
     	}
