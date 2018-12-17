@@ -60,43 +60,36 @@ public class Biblioteca {
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.efetuarEmprestimo(usu, liv);
-			scanner.close();
 			return true;
 		case "dev":
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.efetuarDevolucao(usu, liv);
-			scanner.close();
 			return true;
 		case "res":
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.efetuarReserva(usu, liv);
-			scanner.close();
 			return true;
 
 		case "obs":
 			usu = scanner.nextInt();
 			liv = scanner.nextInt();
 			this.criaObserver(usu, liv);
-			scanner.close();
 			return true;
 
 		case "liv":
 			liv = scanner.nextInt();
 			this.consultaLivro(liv);
-			scanner.close();
 			return true;
 		case "usu":
 			usu = scanner.nextInt();
 			this.consultaUsuario(usu);
-			scanner.close();
 			return true;
 
 		case "ntf":
 			usu = scanner.nextInt();
 			this.getNotifies(usu);
-			scanner.close();
 			return true;
 		default:
 			scanner.close();
@@ -123,7 +116,8 @@ public class Biblioteca {
 
 	private void getNotifies(int usu) {
 		Usuario user = this.getUserById(usu);
-		user.getNotifies();
+		Integer not = user.getNotifies();
+		System.out.println("Vezes que foi notificado: "+not);
 	}
 
 	private void criaObserver(int usu, int liv) {

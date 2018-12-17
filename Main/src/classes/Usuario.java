@@ -63,22 +63,22 @@ public class Usuario implements Observer{
     			Date dataDevolucao = new Date();
     			emp.setDataDevolucaoReal(dataDevolucao);
     			emp.getExemplar().setStatus("disponivel");
-    			System.out.println("Usuário: " + this.getNome());
+    			System.out.println("Usuï¿½rio: " + this.getNome());
     			System.out.println("Livro " + livro.getTitulo() + " devolvido com sucesso!");
     			return;
     		}
     	}
-    	System.out.println("Usuário: " + this.getNome() + " não possui o livro " + livro.getTitulo() + " emprestado");
+    	System.out.println("Usuï¿½rio: " + this.getNome() + " nï¿½o possui o livro " + livro.getTitulo() + " emprestado");
     }
     
     public void reservar(Livro livro) {
     	int numReservas = this.reservas.size();
     	if(numReservas == 3) {
-    		System.out.println("Reserva negada: Usuário " + this.getNome() + " já está no limite de reservas");
+    		System.out.println("Reserva negada: Usuï¿½rio " + this.getNome() + " jï¿½ estï¿½ no limite de reservas");
     		return;
     	}
     	if(this.temReserva(livro)) {
-    		System.out.println("Reserva negada: Usuário " + this.getNome() + " já possui reserva do livro " + livro.getTitulo());
+    		System.out.println("Reserva negada: Usuï¿½rio " + this.getNome() + " jï¿½ possui reserva do livro " + livro.getTitulo());
     		return;
     	}
     	Reserva res = new Reserva(this, livro);
@@ -161,28 +161,34 @@ public class Usuario implements Observer{
 	}
 	
 	public void consulta() {
-		System.out.println("Usuário: " + this.getNome());
-		System.out.println("Lista de empréstimos:");
-		Emprestimo emp;
-		for(int i=0; i<emprestimos.size(); i++) {
-			emp = emprestimos.get(i);
-			System.out.println("Título: " + emp.getExemplar().getLivro().getTitulo());
-			System.out.println("Data do empréstimo: " + emp.getDataEmprestimo());
-			if(emp.getDataDevolucaoReal() == null) {
-				System.out.println("Status: em curso");
-				System.out.println("Data devolução prevista: " + emp.getDataDevolucaoPrevista());
-			}else {
-				System.out.println("Status: finalizado");
-				System.out.println("Devolvido em: " + emp.getDataDevolucaoReal());
+		System.out.println("Usuï¿½rio: " + this.getNome());
+		if(emprestimos.size()!= 0) {
+		System.out.println("Lista de emprï¿½stimos:");
+			Emprestimo emp;
+			for(int i=0; i<emprestimos.size(); i++) {
+				emp = emprestimos.get(i);
+				System.out.println("Tï¿½tulo: " + emp.getExemplar().getLivro().getTitulo());
+				System.out.println("Data do emprï¿½stimo: " + emp.getDataEmprestimo());
+				if(emp.getDataDevolucaoReal() == null) {
+					System.out.println("Status: em curso");
+					System.out.println("Data devoluï¿½ï¿½o prevista: " + emp.getDataDevolucaoPrevista());
+				}else {
+					System.out.println("Status: finalizado");
+					System.out.println("Devolvido em: " + emp.getDataDevolucaoReal());
+				}
 			}
+			System.out.println();
 		}
-		System.out.println();
-		System.out.println("Lista de reservas:");
-		Reserva res;
-		for(int i=0; i<reservas.size(); i++) {
-			System.out.println("Título: " + res.getLivro().getTitulo());
-			System.out.println("Data da reserva: " + res.getDataReserva());
+		if(reservas.size()!= 0) {
+			System.out.println("Lista de reservas:");
+			Reserva res;
+			for(int i=0; i<reservas.size(); i++) {
+				res = reservas.get(i);
+				System.out.println("Tï¿½tulo: " + res.getLivro().getTitulo());
+				System.out.println("Data da reserva: " + res.getDataReserva());
+			}
+			System.out.println();
+
 		}
-		System.out.println();
 	}
 }

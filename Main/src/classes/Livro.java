@@ -39,7 +39,7 @@ public class Livro implements Subject{
 		Exemplar exemplar;
 		for(int i=0; i<exemplares.size(); i++) {
 			exemplar = exemplares.get(i);
-			if(exemplar.getStatus() == "disponivel") {
+			if(exemplar.getStatus() == "DisponÃ­vel") {
 				return exemplar;
 			}
 		}
@@ -51,7 +51,7 @@ public class Livro implements Subject{
 		int disponiveis = 0;
 		for(int i=0; i<exemplares.size(); i++) {
 			exemplar = exemplares.get(i);
-			if(exemplar.getStatus() == "disponivel") {
+			if(exemplar.getStatus() == "DisponÃ­vel") {
 				disponiveis++;
 			}
 		}
@@ -169,7 +169,7 @@ public class Livro implements Subject{
 	}
 	
 	public void consulta() {
-		System.out.println("Título: " + this.getTitulo());
+		System.out.println("Tï¿½tulo: " + this.getTitulo());
 		System.out.println("Quantidade de reservas: " + this.getReservasAtivas());
 		if(this.getReservasAtivas() > 0) {
 			Usuario usu;
@@ -181,11 +181,11 @@ public class Livro implements Subject{
 		Exemplar exemplar;
 		for(int i=0; i<exemplares.size(); i++) {
 			exemplar = exemplares.get(i);
-			System.out.println("Código do exemplar: " + exemplar.getCodigoExemplar() + " -- " + "Status: " + exemplar.getStatus() );
+			System.out.println("Cï¿½digo do exemplar: " + exemplar.getCodigoExemplar() + " -- " + "Status: " + exemplar.getStatus() );
 			if(exemplar.getStatus() == "emprestado") {
-				System.out.println("Autor do empréstimo: " + exemplar.getEmprestimo().getUsuario().getNome());
-				System.out.println("Data do empréstimo: " + exemplar.getEmprestimo().getDataEmprestimo());
-				System.out.println("Data de devolução prevista: " + exemplar.getEmprestimo().getDataDevolucaoPrevista());
+				System.out.println("Autor do emprï¿½stimo: " + exemplar.getEmprestimo().getUsuario().getNome());
+				System.out.println("Data do emprï¿½stimo: " + exemplar.getEmprestimo().getDataEmprestimo());
+				System.out.println("Data de devoluï¿½ï¿½o prevista: " + exemplar.getEmprestimo().getDataDevolucaoPrevista());
 			}
 		}
 		System.out.println();
