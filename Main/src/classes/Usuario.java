@@ -15,6 +15,8 @@ public class Usuario implements Observer{
         this.codigo = codigo;
         this.tipoEmprestimo = tipoEmprestimo;
         this.setNotifies(0);
+        this.emprestimos = new ArrayList<Emprestimo>();
+        this.reservas = new ArrayList<Reserva>();
     }
 
     public String getNome() {
@@ -83,6 +85,7 @@ public class Usuario implements Observer{
     	Date dataReserva = new Date();
     	res.setDataReserva(dataReserva);
     	this.addReserva(res);
+    	livro.addReserva(this);
     	System.out.println("Reserva do livro " + livro.getTitulo() + " para " + this.getNome() + " realizada com sucesso");
     }
     
@@ -93,6 +96,7 @@ public class Usuario implements Observer{
     		if(res.getLivro().getCodigo() == livro.getCodigo()) {
     			reservas.remove(i);
     			livro.unsetReservasAtivas();
+    			livro.removeReserva(this);
     		}
     	}
     }
@@ -154,5 +158,31 @@ public class Usuario implements Observer{
 	@Override
 	public void update() {
 		this.setNotifies(this.getNotifies() + 1);
+	}
+	
+	public void consulta() {
+		System.out.println("Usuário: " + this.getNome());
+		System.out.println("Lista de empréstimos:");
+		Emprestimo emp;
+		for(int i=0; i<emprestimos.size(); i++) {
+			emp = emprestimos.get(i);
+			System.out.println("Título: " + emp.getExemplar().getLivro().getTitulo());
+			System.out.println("Data do empréstimo: " + emp.getDataEmprestimo());
+			if(emp.getDataDevolucaoReal() == null) {
+				System.out.println("Status: em curso");
+				System.out.println("Data devolução prevista: " + emp.getDataDevolucaoPrevista());
+			}else {
+				System.out.println("Status: finalizado");
+				System.out.println("Devolvido em: " + emp.getDataDevolucaoReal());
+			}
+		}
+		System.out.println();
+		System.out.println("Lista de reservas:");
+		Reserva res;
+		for(int i=0; i<reservas.size(); i++) {
+			System.out.println("Título: " + res.getLivro().getTitulo());
+			System.out.println("Data da reserva: " + res.getDataReserva());
+		}
+		System.out.println();
 	}
 }

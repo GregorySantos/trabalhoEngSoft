@@ -10,6 +10,7 @@ public class Reserva {
 		this.usuario = usuario;
 		this.livro = livro;
 		livro.setReservasAtivas();
+		livro.addReserva(usuario);
 	}
 	
 	public Date getDataReserva() {

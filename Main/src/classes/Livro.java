@@ -9,8 +9,8 @@ public class Livro implements Subject{
     private String autores;
     private int edicao;
 	private int anoDaPublicacao;
-	private Usuario dono;
 	private int reservasAtivas;
+	private ArrayList<Usuario> reservas;
 	private ArrayList<Exemplar> exemplares;
 	private ArrayList<Observer> observers;
 	
@@ -23,6 +23,7 @@ public class Livro implements Subject{
 		this.anoDaPublicacao = anoPubli;
 		exemplares = new ArrayList<Exemplar>();
 		observers = new ArrayList<Observer>();
+		reservas = new ArrayList<Usuario>();
 	}
 	
 	public void addExemplar(int codigoExemplar, String status) {
@@ -56,13 +57,20 @@ public class Livro implements Subject{
 		}
 		return disponiveis;
 	}
-
-	public Usuario getDono() {
-		return this.dono;
+	
+	public void addReserva(Usuario usuario) {
+		reservas.add(usuario);
 	}
-
-	public void setDono(Usuario dono) {
-		this.dono = dono;
+	
+	public void removeReserva(Usuario usuario) {
+		Usuario usu;
+		for(int i=0; i<reservas.size(); i++) {
+			usu = reservas.get(i);
+			if(usu.getCodigo() == usuario.getCodigo()) {
+				reservas.remove(i);
+				return;
+			}
+		}
 	}
 
     public int getReservasAtivas() {
@@ -158,6 +166,29 @@ public class Livro implements Subject{
 		for (Observer o : observers) {
 			o.update();
 		}
+	}
+	
+	public void consulta() {
+		System.out.println("Título: " + this.getTitulo());
+		System.out.println("Quantidade de reservas: " + this.getReservasAtivas());
+		if(this.getReservasAtivas() > 0) {
+			Usuario usu;
+			for(int i=0; i<reservas.size(); i++) {
+				usu = reservas.get(i);
+				System.out.println("Reserva para: " + usu.getNome());
+			}
+		}
+		Exemplar exemplar;
+		for(int i=0; i<exemplares.size(); i++) {
+			exemplar = exemplares.get(i);
+			System.out.println("Código do exemplar: " + exemplar.getCodigoExemplar() + " -- " + "Status: " + exemplar.getStatus() );
+			if(exemplar.getStatus() == "emprestado") {
+				System.out.println("Autor do empréstimo: " + exemplar.getEmprestimo().getUsuario().getNome());
+				System.out.println("Data do empréstimo: " + exemplar.getEmprestimo().getDataEmprestimo());
+				System.out.println("Data de devolução prevista: " + exemplar.getEmprestimo().getDataDevolucaoPrevista());
+			}
+		}
+		System.out.println();
 	}
 
 }
