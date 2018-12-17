@@ -4,6 +4,7 @@ public class Exemplar {
 	private Livro livro;
 	private int codigoExemplar;
 	private String status;
+	private Emprestimo emprestimo;
 
 	
 	public Exemplar(Livro livro, int codigoExemplar, String status) {
@@ -38,6 +39,14 @@ public class Exemplar {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Emprestimo getEmprestimo() {
+		return emprestimo;
+	}
+
+	public void setEmprestimo(Emprestimo emprestimo) {
+		this.emprestimo = emprestimo;
 	}
 	
 	

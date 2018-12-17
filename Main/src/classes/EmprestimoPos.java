@@ -30,6 +30,7 @@ public class EmprestimoPos implements EmprestimoBehavior{
         	emp.setDataEmprestimo(dataEmprestimo);
         	emp.setDataDevolucaoPrevista(this.calcularDataDevolucao());
         	exemplar.setStatus("emprestado");
+        	exemplar.setEmprestimo(emp);
         	usuario.addEmprestimo(emp);
         	if(usuario.temReserva(livro)) {
         		usuario.removerReserva(livro);
